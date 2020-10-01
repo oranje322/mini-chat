@@ -4,6 +4,7 @@ const server = require('http').createServer(app)
 const useSocket = require('socket.io')
 const io = useSocket(server)
 
+export const PORT = process.env.PORT || 3001
 
 app.use(express.json());
 
@@ -64,7 +65,7 @@ io.on('connection', (socket) => {
     console.log('user connected', socket.id);
 });
 
-server.listen(9999, (err) => {
+server.listen(PORT, (err) => {
     if (err) {
         throw Error(err);
     }
@@ -73,18 +74,3 @@ server.listen(9999, (err) => {
 
 
 
-// const jsonServer = require('json-server');
-// const server = jsonServer.create();
-// const router = jsonServer.router('./public/database.json');
-// const middlewares = jsonServer.defaults({
-//     static: './build',
-// });
-//
-// const PORT = process.env.PORT || 3001;
-//
-// server.use(middlewares);
-// server.use(router);
-//
-// server.listen(PORT, () => {
-//     console.log('Server is running');
-// });
