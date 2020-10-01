@@ -8,8 +8,7 @@ const io = useSocket(server)
 const PORT = process.env.PORT || 3001
 
 app.use(express.json());
-app.use(express.static(path.join(__dirname, "..", "build")));
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, 'client/build')));
 
 
 const rooms = new Map();
@@ -25,6 +24,10 @@ app.get('/rooms/:id', (req, res) => {
     res.json(obj);
 });
 
+app.get('*', (req,res) =>{
+    res.sendFile(path.join(__dirname+'/client/build/index.html'));
+});
+
 app.post('/rooms', (req, res) => {
     const { roomId, userName } = req.body;
     if (!rooms.has(roomId)) {
@@ -38,6 +41,8 @@ app.post('/rooms', (req, res) => {
     }
     res.send();
 });
+
+
 
 io.on('connection', (socket) => {
     socket.on('ROOM:JOIN', ({ roomId, userName }) => {
