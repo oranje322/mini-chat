@@ -4,7 +4,7 @@ const server = require('http').createServer(app)
 const useSocket = require('socket.io')
 const io = useSocket(server)
 
-export const PORT = process.env.PORT || 3001
+const PORT = process.env.PORT || 3001
 
 app.use(express.json());
 
