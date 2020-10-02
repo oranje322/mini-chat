@@ -8,7 +8,7 @@ const io = useSocket(server)
 const PORT = process.env.PORT || 3001
 
 app.use(express.json());
-app.use(express.static(path.join(__dirname, 'mini-chat/build')));
+app.use(express.static(path.join(__dirname, '/build')));
 
 
 const rooms = new Map();
@@ -25,7 +25,7 @@ app.get('/rooms/:id', (req, res) => {
 });
 
 app.get('*', (req,res) =>{
-    res.sendFile(path.join(__dirname+'/client/build/index.html'));
+    res.sendFile(path.join(__dirname+'/build/index.html'));
 });
 
 app.post('/rooms', (req, res) => {
