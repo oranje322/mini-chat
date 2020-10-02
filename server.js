@@ -5,8 +5,8 @@ const server = require('http').createServer(app)
 const useSocket = require('socket.io')
 const io = useSocket(server)
 
-// const PORT = process.env.PORT || 5000
-const PORT = 5000
+const PORT = process.env.PORT || 5000
+
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '/build')));
