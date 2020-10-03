@@ -1,6 +1,8 @@
 import React, {useState} from "react";
 import axios from 'axios';
 
+
+
 const LoginForm = ({onLogin}) => {
     const [roomId, setRoomId] = React.useState('');
     const [userName, setUserName] = React.useState('');
@@ -15,7 +17,7 @@ const LoginForm = ({onLogin}) => {
             userName,
         };
         setLoading(true);
-        await axios.post('/rooms', obj);
+        await axios.post(`/rooms`, obj);
         onLogin(obj);
     };
 
